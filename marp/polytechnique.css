@@ -3,72 +3,85 @@
  * @author weft-loom
  * @author_url https://github.com/openweft
  *
- * Marp slide theme inspired by the École polytechnique visual
- * identity (Bordeaux X red, white / grey accents). Use via
- * `theme: polytechnique` in the Marp YAML front-matter.
+ * Marp slide theme for the École polytechnique brand. Aligned with
+ * the 2021 charte graphique
+ * (polytechnique.edu/presse/kit-media). The signature is PANTONE
+ * 7694C deep navy ; secondary accents come from the documented
+ * 24-colour institutional palette. The "X" visual identity is
+ * blue — earlier theme revisions used Bordeaux red which has no
+ * grounding in the official charter.
  */
 
 @import 'default';
 
-/* École polytechnique brand-accurate colours (Bordeaux X red is
- * the institution's signature ; the X visual identity uses red
- * + black + white only — no other accent). Aligned with the
- * official brand guide (PRINT charter PMS 1955 ≈ #b82b36). */
+/* Signature : PANTONE 7694C ≈ #01426A. Accent picks come from the
+ * documented 24-colour palette : PROCESS BLUE 0085CA (mid-blue),
+ * 312C 00A9CE (cyan), WARM GREY 1C ECE8DC (paper-cream surface),
+ * COOL GREY 11 53565A (body text). No reds — the brand reserves
+ * 021C / 206C / 7427C for accents only, never primary. */
 :root {
-  --x-red: #b82b36;
-  --x-red-dark: #7a181b;
-  --x-grey: #1a1a1a;
-  --x-bg: #ffffff;
-  --x-muted: #6b6b6b;
+  --x-blue:       #01426a;
+  --x-blue-mid:   #0085ca;
+  --x-cyan:       #00a9ce;
+  --x-paper:      #ece8dc;
+  --x-text:       #53565a;
+  --x-text-dark:  #1f2226;
+  --x-bg:         #ffffff;
+  --x-muted:      #888b8d;
 }
 
 section {
   background: var(--x-bg);
-  color: var(--x-grey);
-  font-family: "Helvetica Neue", "Arial", "Liberation Sans", sans-serif;
+  color: var(--x-text-dark);
+  font-family: "Mulish", "Source Sans Pro", "Helvetica Neue", "Arial", sans-serif;
   padding: 56px 72px;
   font-size: 28px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
+/* Horizontal navy bar at the top — derived from the charter's
+ * "filet court" graphic element used as a separator. */
 section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 8px;
-  background: var(--x-red);
+  height: 6px;
+  background: var(--x-blue);
 }
 
+/* Footer wordmark : the charter pins "École polytechnique" with a
+ * lowercase 'p' — uppercase P would be a brand violation. */
 section::after {
   content: 'École polytechnique';
   position: absolute;
   bottom: 18px;
   right: 32px;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--x-muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 h1, h2, h3 {
-  color: var(--x-red);
+  font-family: "Roboto Slab", "Droid Serif", "Georgia", serif;
+  color: var(--x-blue);
   font-weight: 700;
   margin-bottom: 0.6em;
 }
 h1 { font-size: 2.4em; }
-h2 { font-size: 1.7em; }
-h3 { font-size: 1.3em; color: var(--x-grey); }
+h2 { font-size: 1.7em; color: var(--x-blue-mid); }
+h3 { font-size: 1.25em; color: var(--x-text); }
 
 a {
-  color: var(--x-red);
-  border-bottom: 1px solid var(--x-red);
+  color: var(--x-blue);
+  border-bottom: 1px solid var(--x-cyan);
   text-decoration: none;
 }
 
 code {
-  background: #f4f4f4;
+  background: var(--x-paper);
+  color: var(--x-blue);
   padding: 2px 6px;
   border-radius: 3px;
   font-family: "JetBrains Mono", "Menlo", monospace;
@@ -76,40 +89,43 @@ code {
 }
 
 pre code {
-  background: #1e1e1e;
-  color: #f0f0f0;
+  background: #0e1d2c;
+  color: #d6e6f5;
   display: block;
   padding: 1em;
-  border-left: 4px solid var(--x-red);
+  border-left: 4px solid var(--x-cyan);
   font-size: 0.85em;
 }
 
 blockquote {
-  border-left: 4px solid var(--x-red);
+  border-left: 4px solid var(--x-cyan);
   padding-left: 1em;
-  color: var(--x-muted);
+  color: var(--x-text);
   font-style: italic;
 }
 
-/* Lead / title slide */
+ul li::marker { color: var(--x-cyan); }
+
+/* Lead / title slide : white logotype on the signature navy, per
+ * the charter rule "logotype blanc sur fonds suffisamment foncés". */
 section.lead {
-  background: linear-gradient(135deg, var(--x-red-dark) 0%, var(--x-red) 100%);
+  background: var(--x-blue);
   color: white;
   text-align: center;
 }
 section.lead::before { display: none; }
 section.lead::after { color: rgba(255, 255, 255, 0.7); }
 section.lead h1 { color: white; font-size: 3em; }
-section.lead h2 { color: rgba(255, 255, 255, 0.85); font-weight: 400; }
+section.lead h2 { color: var(--x-cyan); font-weight: 400; border: none; }
 
 table {
   border-collapse: collapse;
   margin: 0.6em 0;
 }
 th {
-  background: var(--x-red);
+  background: var(--x-blue);
   color: white;
   padding: 0.4em 0.8em;
   text-align: left;
 }
-td { padding: 0.4em 0.8em; border-bottom: 1px solid #ddd; }
+td { padding: 0.4em 0.8em; border-bottom: 1px solid #e0e6ee; }
