@@ -88,3 +88,23 @@ and typography, never bundled as image assets.
 ## License
 
 BSD-3-Clause (openweft).
+
+## Cover slide / logo
+
+The theme renders a brand-typography wordmark on `section.lead`
+slides ; no institutional logo file is bundled (trademarks remain
+the institution's property and aren't redistributable under
+BSD-3-Clause).
+
+If you have the right to use the official logotype in your deck,
+supply your own image via the `--x-logo` CSS variable :
+
+```markdown
+<!-- _class: lead -->
+<!-- _style: "--x-logo: url(/path/to/your/logo.svg)" -->
+
+# Title here
+## Subtitle here
+```
+
+Official logo source : https://www.polytechnique.edu/presse/kit-media (kit logo print / web).

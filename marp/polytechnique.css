@@ -107,15 +107,55 @@ blockquote {
 ul li::marker { color: var(--x-cyan); }
 
 /* Lead / title slide : white logotype on the signature navy, per
- * the charter rule "logotype blanc sur fonds suffisamment foncés". */
+ * the charter rule "logotype blanc sur fonds suffisamment foncés".
+ *
+ * Logo placement : the theme does NOT bundle the institutional
+ * logotype file (it's an X trademark — the user owns the right to
+ * include it in their own decks but the theme repo cannot
+ * redistribute it under BSD-3-Clause). Instead, an `--x-logo`
+ * CSS variable provides an inject point :
+ *
+ *   <!-- _class: lead -->
+ *   <!-- _style: "--x-logo: url(/path/to/Logo_X_RVB_blanc.png)" -->
+ *
+ * When set, the logo renders centred above the title block. When
+ * unset, the theme falls back to a typographic wordmark (no
+ * trademark file shipped) so the slide still reads as the X
+ * brand. Logo download : https://www.polytechnique.edu/presse/kit-media
+ */
 section.lead {
   background: var(--x-blue);
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --x-logo: none;
 }
-section.lead::before { display: none; }
+section.lead::before {
+  /* Cover image (logo if --x-logo is set, otherwise the typographic
+   * wordmark "ÉCOLE POLYTECHNIQUE" in Roboto Slab matches the
+   * charter's digital pairing). */
+  content: 'ÉCOLE POLYTECHNIQUE';
+  display: block;
+  position: static;
+  width: auto;
+  height: auto;
+  background: var(--x-logo) center / contain no-repeat;
+  background-color: transparent;
+  font-family: "Roboto Slab", "Droid Serif", "Georgia", serif;
+  font-weight: 200;
+  font-size: 1.1em;
+  letter-spacing: 0.3em;
+  color: white;
+  margin-bottom: 1.5em;
+  min-height: 1.5em;
+}
+/* When the user provides a --x-logo URL, the wordmark text is
+ * hidden so the trademark file replaces it cleanly. */
+section.lead[style*="--x-logo"]::before { font-size: 0; min-height: 96px; }
 section.lead::after { color: rgba(255, 255, 255, 0.7); }
-section.lead h1 { color: white; font-size: 3em; }
+section.lead h1 { color: white; font-size: 3em; margin: 0.3em 0; }
 section.lead h2 { color: var(--x-cyan); font-weight: 400; border: none; }
 
 table {
