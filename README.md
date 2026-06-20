@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/openweft/brand/main/social/weft-loom-theme-polytechnique.png" alt="weft-loom-theme-polytechnique" width="720"></p>
+
 # weft-loom-theme-polytechnique
 
 `polytechnique` brand theme for weft-loom compile tooling.
